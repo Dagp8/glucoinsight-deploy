@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link href="/css/output.css" rel="stylesheet" />
+  </head>
+  <body class="bg-gray-50 text-gray-800 font-sans">
+    <!-- Header -->
+    <%- include("partials/header") %>
+
+    <!-- Main content -->
+    <main class="min-h-[70vh] flex items-center justify-center px-4 py-10">
+      <div
+        class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 items-center bg-white p-10 rounded-2xl shadow-lg"
+      >
+        <!-- Text content -->
+        <div>
+          <h1 class="text-2xl font-bold text-blue-600 mb-4">
+            Understand your diabetes risk with AI
+          </h1>
+
+          <p class="text-lg mb-6">
+            AI-powered web tool to estimate your risk of developing type 2
+            diabetes. This application uses real health data and predictive
+            models to guide you towards better lifestyle decisions.
+          </p>
+
+          <a
+            href="/form"
+            class="inline-block bg-blue-600 text-white text-lg px-6 py-3 rounded-xl hover:bg-blue-700 transition"
+          >
+            Start Evaluation
+          </a>
+
+          <p class="mt-6 text-sm text-gray-500">
+            Your data is processed securely and only used to generate your
+            prediction.
+            <a href="/info" class="text-blue-500 underline">Learn more</a>
+          </p>
+        </div>
+
+        <!-- Image -->
+        <div class="flex justify-center">
+          <img
+            src="/img/imgh2.png"
+            alt="GlucoInsight visual"
+            class="max-w-full w-80 h-auto"
+          />
+        </div>
+      </div>
+    </main>
+
+    <!-- Average Rating Section -->
+    <%- include("partials/rating-summary", { avgRating: avgRating, totalRatings:
+    totalRatings }) %>
+
+    <!-- Footer-->
+    <%- include("partials/footer") %>
+  </body>
+</html>

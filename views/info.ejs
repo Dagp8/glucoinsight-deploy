@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About - <%= title %></title>
+    <link href="/css/output.css" rel="stylesheet" />
+  </head>
+  <body class="bg-white text-gray-800 font-sans">
+    <!-- Header -->
+    <%- include("partials/header") %>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto py-12 px-6 space-y-6">
+      <h1 class="text-3xl font-bold text-blue-600">About GlucoInsight</h1>
+
+      <p class="text-lg leading-relaxed">
+        <strong>GlucoInsight</strong> is an AI-powered tool designed to help
+        individuals estimate their potential risk of developing type 2 diabetes
+        based on a few basic lifestyle and health factors.
+      </p>
+
+      <p class="text-base text-gray-700">
+        This project was developed as part of a Data Science Master’s
+        dissertation. It uses real data from the 2023 BRFSS survey and applies
+        machine learning models to generate personalised risk assessments.
+      </p>
+
+      <h2 class="text-2xl font-semibold text-blue-500 mt-8">How it works</h2>
+      <ul class="list-disc list-inside space-y-2 text-gray-700">
+        <li>
+          Users fill out a short form about age, sex, weight, height, activity,
+          general health, and insurance status.
+        </li>
+        <li>
+          The app uses a trained model (HistGradientBoosting) to estimate the
+          risk of type 2 diabetes.
+        </li>
+        <li>
+          The result is shown as a percentage along with a risk level and
+          suggested resources.
+        </li>
+      </ul>
+
+      <h2 class="text-2xl font-semibold text-blue-500 mt-8">
+        Important Disclaimer
+      </h2>
+      <p class="text-sm text-gray-600 italic">
+        This tool is for informational and educational purposes only. It does
+        not replace medical advice, diagnosis or treatment. If you are concerned
+        about your health, please consult a healthcare professional.
+      </p>
+    </main>
+
+    <!-- Footer -->
+    <%- include("partials/footer") %>
+  </body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link href="/css/output.css" rel="stylesheet" />
+  </head>
+  <body class="bg-gray-50 text-gray-800 font-sans">
+    <%- include("partials/header") %>
+
+    <main
+      class="min-h-screen flex items-center justify-center px-4 bg-gradient-to-br from-blue-50 to-white py-12"
+    >
+      <div
+        class="max-w-2xl w-full bg-white p-8 rounded-3xl shadow-xl space-y-6"
+      >
+        <!-- Header Form Title -->
+        <div class="text-center">
+          <h2 class="text-3xl font-bold text-blue-600 mb-2">Risk Evaluation</h2>
+          <p class="text-sm text-gray-600">
+            Complete the form below to get your personalised type 2 diabetes
+            risk.
+          </p>
+        </div>
+
+        <!-- Form -->
+        <form action="/predict" method="POST" class="space-y-5">
+          <!-- Age & Sex -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium mb-1">Age range</label>
+              <select name="age" required class="w-full border rounded p-2">
+                <option value="">Select</option>
+                <option value="1">18–24</option>
+                <option value="2">25–29</option>
+                <option value="3">30–34</option>
+                <option value="4">35–39</option>
+                <option value="5">40–44</option>
+                <option value="6">45–49</option>
+                <option value="7">50–54</option>
+                <option value="8">55–59</option>
+                <option value="9">60–64</option>
+                <option value="10">65–69</option>
+                <option value="11">70–74</option>
+                <option value="12">75–79</option>
+                <option value="13">80 or older</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium mb-1">Sex</label>
+              <select name="sex" required class="w-full border rounded-xl p-2">
+                <option value="">Select</option>
+                <option value="1">Male</option>
+                <option value="2">Female</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Weight & Height -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium mb-1">Weight (kg)</label>
+              <input
+                type="number"
+                step="0.1"
+                name="weight"
+                id="weight"
+                class="w-full border rounded-xl p-2"
+                required
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-1">Height (cm)</label>
+              <input
+                type="number"
+                step="0.1"
+                name="height"
+                id="height"
+                class="w-full border rounded-xl p-2"
+                required
+              />
+            </div>
+          </div>
+
+          <!-- BMI -->
+          <div>
+            <label class="block text-sm font-medium mb-1">Calculated BMI</label>
+            <input
+              type="number"
+              step="0.01"
+              name="bmi"
+              id="bmi"
+              readonly
+              class="w-full border bg-gray-100 rounded-xl p-2"
+            />
+          </div>
+
+          <!-- Activity, Health, Insurance -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-sm font-medium mb-1"
+                >Exercise regularly?</label
+              >
+              <select
+                name="activity"
+                required
+                class="w-full border rounded-xl p-2"
+              >
+                <option value="">Select</option>
+                <option value="1">Yes</option>
+                <option value="2">No</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-1"
+                >General health</label
+              >
+              <select
+                name="health"
+                required
+                class="w-full border rounded-xl p-2"
+              >
+                <option value="">Select</option>
+                <option value="1">Excellent</option>
+                <option value="2">Very Good</option>
+                <option value="3">Good</option>
+                <option value="4">Fair</option>
+                <option value="5">Poor</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-1"
+                >Health coverage</label
+              >
+              <select
+                name="insurance"
+                required
+                class="w-full border rounded-xl p-2"
+              >
+                <option value="">Select</option>
+                <option value="1">Yes</option>
+                <option value="2">No</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <div class="pt-4">
+            <button
+              type="submit"
+              class="w-full bg-blue-600 text-white font-semibold py-3 rounded-xl hover:bg-blue-700 transition"
+            >
+              Submit and Calculate Risk
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <script>
+      const weightInput = document.getElementById("weight");
+      const heightInput = document.getElementById("height");
+      const bmiInput = document.getElementById("bmi");
+
+      function calculateBMI() {
+        const weight = parseFloat(weightInput.value);
+        const height = parseFloat(heightInput.value);
+        if (weight > 0 && height > 0) {
+          const heightM = height / 100;
+          const bmi = weight / (heightM * heightM);
+          bmiInput.value = bmi.toFixed(2);
+        } else {
+          bmiInput.value = "";
+        }
+      }
+
+      weightInput.addEventListener("input", calculateBMI);
+      heightInput.addEventListener("input", calculateBMI);
+    </script>
+
+    <%- include("partials/footer") %>
+  </body>
+</html>

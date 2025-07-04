@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact - <%= title %></title>
+    <link href="/css/output.css" rel="stylesheet" />
+  </head>
+  <body class="bg-gray-50 text-gray-800 font-sans">
+    <!-- Header -->
+    <%- include("partials/header") %>
+
+    <!-- Main Content -->
+    <main
+      class="max-w-xl mx-auto py-12 px-6 bg-white shadow rounded-xl mt-10 space-y-6"
+    >
+      <h1 class="text-3xl font-bold text-blue-600 text-center">Contact Us</h1>
+
+      <p class="text-base text-gray-600 text-center">
+        If you have questions, feedback, or want to collaborate, feel free to
+        get in touch.
+      </p>
+      <% if (success) { %>
+      <div
+        class="bg-green-100 text-green-800 p-3 rounded text-sm text-center mb-4"
+      >
+        <%= success %>
+      </div>
+      <% } %>
+
+      <form class="space-y-4" action="/contact" method="POST">
+        <div>
+          <label class="block text-sm font-medium mb-1">Name</label>
+          <input
+            type="text"
+            name="name"
+            class="w-full border rounded p-2"
+            required
+          />
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1">Email</label>
+          <input
+            type="email"
+            name="email"
+            class="w-full border rounded p-2"
+            required
+          />
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1">Message</label>
+          <textarea
+            name="message"
+            rows="4"
+            class="w-full border rounded p-2"
+            required
+          ></textarea>
+        </div>
+        <button
+          type="submit"
+          class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        >
+          Send Message
+        </button>
+      </form>
+    </main>
+
+    <!-- Footer -->
+    <%- include("partials/footer") %>
+  </body>
+</html>

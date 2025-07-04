@@ -1,0 +1,19 @@
+<!-- Star Rating Summary Partial -->
+<% if (avgRating !== "N/A") { const fullStars = Math.floor(avgRating); const
+hasHalfStar = avgRating - fullStars >= 0.5; const emptyStars = 5 - fullStars -
+(hasHalfStar ? 1 : 0); %>
+<div class="text-center mt-8 space-y-2">
+  <p class="text-lg text-gray-700 font-medium">
+    Community rating for GlucoInsight:
+  </p>
+  <div class="text-2xl text-yellow-500">
+    <% for (let i = 0; i < fullStars; i++) { %> ★ <% } %> <% if (hasHalfStar) {
+    %> ☆ <% } %> <% for (let i = 0; i < emptyStars; i++) { %> ☆ <% } %>
+  </div>
+  <p class="text-sm text-gray-600">
+    Average: <%= avgRating %> / 5 from <%= totalRatings %> users
+  </p>
+</div>
+<% } else { %>
+<p class="text-center text-sm text-gray-600 mt-8">No ratings yet.</p>
+<% } %>

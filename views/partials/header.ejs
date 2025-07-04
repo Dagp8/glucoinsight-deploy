@@ -1,0 +1,66 @@
+<header class="bg-[#f8fbff] border-b shadow-sm">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <!-- Logo + Text -->
+    <a href="/" class="flex items-center space-x-3">
+      <img
+        src="/img/Gluco.png"
+        alt="GlucoInsight Logo"
+        class="w-20 h-20 object-contain"
+      />
+      <span class="text-2xl md:text-3xl font-bold text-[#2563eb]"
+        >GlucoInsight</span
+      >
+    </a>
+
+    <!-- Mobile menu button -->
+    <div class="md:hidden">
+      <button id="menu-btn" class="text-gray-700 focus:outline-none">
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Navigation -->
+    <nav
+      id="nav-menu"
+      class="hidden md:flex space-x-6 text-base font-medium text-gray-700"
+    >
+      <a href="/" class="hover:text-[#2563eb] transition">Home</a>
+      <a href="/form" class="hover:text-[#2563eb] transition">Start</a>
+      <a href="/info" class="hover:text-[#2563eb] transition">About</a>
+      <a href="/contact" class="hover:text-[#2563eb] transition">Contact</a>
+    </nav>
+  </div>
+
+  <!-- Mobile nav links -->
+  <div
+    id="mobile-links"
+    class="md:hidden hidden px-6 pb-4 space-y-2 text-sm text-gray-700"
+  >
+    <a href="/" class="block hover:text-[#2563eb]">Home</a>
+    <a href="/form" class="block hover:text-[#2563eb]">Start</a>
+    <a href="/info" class="block hover:text-[#2563eb]">About</a>
+    <a href="/contact" class="block hover:text-[#2563eb]">Contact</a>
+  </div>
+
+  <!-- JS -->
+  <script>
+    const menuBtn = document.getElementById("menu-btn");
+    const mobileLinks = document.getElementById("mobile-links");
+
+    menuBtn.addEventListener("click", () => {
+      mobileLinks.classList.toggle("hidden");
+    });
+  </script>
+</header>
