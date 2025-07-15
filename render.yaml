@@ -2,7 +2,11 @@ services:
   - type: web
     name: glucoinsight-web
     env: node
-    buildCommand: npm ci && npm run build:css
+    buildCommand: |
+      apt-get update && apt-get install -y python3-pip &&
+      pip3 install -r requirements.txt &&
+      npm ci &&
+      npm run build:css
     startCommand: node app.js
     envVars:
       - key: EMAIL_USER
