@@ -2,7 +2,7 @@ services:
   - type: web
     name: glucoinsight-web
     env: node
-    buildCommand: npm install && npm run build:css
+    buildCommand: npm ci && npm run build:css
     startCommand: node app.js
     envVars:
       - key: EMAIL_USER
