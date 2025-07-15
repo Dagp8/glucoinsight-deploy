@@ -106,24 +106,29 @@ router.post("/predict", (req, res) => {
     _HLTHPL1: parseInt(insurance),
   };
 
-  const py = spawn("./venv/bin/python", ["predict.py"]);
+  const { spawn } = require("child_process");
+  const path = require("path");
+
+  const py = spawn("python3", [path.join(__dirname, "../predict.py")]);
   py.stdin.write(JSON.stringify(inputData));
   py.stdin.end();
 
   let result = "";
+  let errorOccurred = false;
+
   py.stdout.on("data", (data) => {
     result += data.toString();
   });
 
-  let errorOccurred = false;
-
   py.stderr.on("data", (err) => {
-    console.error("Python error:", err.toString());
-    errorOccurred = true;
-    res.render("error", {
-      title: "Prediction Error",
-      message: "Something went wrong: " + err.toString(),
-    });
+    if (!errorOccurred) {
+      errorOccurred = true;
+      console.error("Python error:", err.toString());
+      res.render("error", {
+        title: "Prediction Error",
+        message: "Something went wrong: " + err.toString(),
+      });
+    }
   });
 
   py.on("close", () => {
