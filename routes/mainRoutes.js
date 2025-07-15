@@ -109,7 +109,7 @@ router.post("/predict", (req, res) => {
   const { spawn } = require("child_process");
   const path = require("path");
 
-  const py = spawn("python3", [path.join(__dirname, "../predict.py")]);
+  const py = spawn("venv/bin/python", [path.join(__dirname, "../predict.py")]);
   py.stdin.write(JSON.stringify(inputData));
   py.stdin.end();
 
