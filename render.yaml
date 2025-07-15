@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: glucoinsight-web
+    env: node
+    buildCommand: npm install && npm run build:css
+    startCommand: node app.js
+    envVars:
+      - key: EMAIL_USER
+        sync: false
+      - key: EMAIL_PASS
+        sync: false
+      - key: MONGO_URI
+        sync: false
+
+  - type: worker
+    name: glucoinsight-python
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: echo "Python service for prediction"
+    autoDeploy: false
