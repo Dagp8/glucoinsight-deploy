@@ -1,4 +1,4 @@
-# GlucoInsight 
+# GlucoInsight
 
 **AI-Based System for Predicting Type 2 Diabetes Risk**  
 Master's Final Project – MSc in Data Science  
@@ -10,45 +10,54 @@ Date: July 2025
 
 ## Overview
 
-**GlucoInsight** is a web-based application designed to estimate an individual's risk of developing Type 2 Diabetes using machine learning. The tool integrates a predictive model trained on BRFSS 2023 data from the CDC, offering users a quick, evidence-based assessment along with lifestyle recommendations.
+**GlucoInsight** is a web-based application designed to estimate an individual's risk of developing Type 2 Diabetes using machine learning. It integrates a predictive model trained on BRFSS 2023 data from the CDC, offering users a quick, evidence-based assessment along with lifestyle recommendations.
+
+**Live demo**: [https://glucoinsight-deploy.onrender.com](https://glucoinsight-deploy.onrender.com)
 
 ---
 
-##  Machine Learning Approach
+## Machine Learning Approach
 
--  **Dataset**: BRFSS 2023 (CDC – USA)
-- Data Preprocessing:
+- **Dataset**: BRFSS 2023 (CDC – USA)
+- **Data preprocessing**:
   - Null value handling
   - Class balancing (oversampling)
   - Feature normalization and transformation
--  Models evaluated:
+- **Models evaluated**:
   - Logistic Regression
   - Random Forest
-  - HistGradientBoostingClassifier  (Final)
+  - HistGradientBoostingClassifier (final)
   - Artificial Neural Networks
-- **Final Model**: HistGradientBoostingClassifier with hyperparameter tuning (AUC = 0.71)
--  Model exported with `joblib` as `diabetes_risk_model.pkl`
+- **Final Model**: `HistGradientBoostingClassifier`
+  - Hyperparameter tuned
+  - Exported via `joblib`
+  - Final AUC: **0.71**
+- **Model files**:
+  - `diabetes_risk_model.pkl`
+  - `model_columns.pkl`
 
 ---
 
-## Web Application
+## Web Application Stack
 
-Built with:
--  Node.js + Express
--  Tailwind CSS
--  Python for prediction via `child_process`
--  MongoDB for storing feedback
--  Nodemailer for sending results
+- **Node.js + Express** – API and routing
+- **EJS** – Template rendering
+- **Tailwind CSS** – Responsive design
+- **Python** – ML predictions via `child_process.spawn`
+- **MongoDB Atlas** – Feedback storage
+- **Nodemailer** – Email functionality
 
 ---
 
-##  Getting Started
+## Getting Started
 
 ### Requirements
+
 - Python 3.10+
 - Node.js 18+
 - MongoDB Atlas URI
-- Create a `.env` file:
+
+### `.env` File Example
 
 ```env
 EMAIL_USER=youremail@example.com
@@ -56,7 +65,9 @@ EMAIL_PASS=your-email-app-password
 MONGO_URI=mongodb+srv://yourMongoURI
 ```
 
-### Installation
+---
+
+## Installation
 
 ```bash
 # 1. Clone the project
@@ -66,22 +77,24 @@ cd glucoinsight-deploy
 # 2. Install Node dependencies
 npm install
 
-# 3. Set up Tailwind CSS
+# 3. Build Tailwind CSS
 npm run build:css
 
-# 4. (Optional) Create Python virtual environment
+# 4. (Optional) Set up Python environment
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### Run Locally
+---
+
+## Run Locally
 
 ```bash
-# Terminal 1 (Start web server)
+# Terminal 1 – Run Node server
 node app.js
 
-# Terminal 2 (Tailwind watcher)
+# Terminal 2 – Run Tailwind build (only if working on styles)
 npm run build:css
 ```
 
@@ -89,45 +102,48 @@ Visit: [http://localhost:3000](http://localhost:3000)
 
 ---
 
-##  File Structure
+## File Structure
 
-```
+```bash
 glucoinsight-deploy/
-│
-├── app.js                 # Main Express app
-├── routes/                # Express routes
-├── config/                # MongoDB config
-├── views/                 # EJS templates
-├── public/                # Static assets
-├── predict.py            # Python prediction script
-├── model_columns.pkl      # Features used by model
+├── app.js                  # Main Express app
+├── config/db.js            # MongoDB connection
+├── routes/                 # Express routes
+├── views/                  # EJS templates (form, result, error, etc.)
+├── public/                 # Static assets (CSS, images)
+├── models/Rating.js        # Feedback model
+├── predict.py              # Python ML interface
+├── model_columns.pkl       # ML model feature columns
 ├── diabetes_risk_model.pkl # Trained ML model
-├── .env                   # Environment secrets
-└── README.md              # You're here
+├── start.sh                # Startup script for Render
+├── requirements.txt        # Python dependencies
+├── package.json            # Node dependencies
+├── render.yaml             # Render deployment config
+└── .env                    # Environment secrets (not tracked)
 ```
 
 ---
 
-##  License
+## Deployment Details
 
-© 2025 Dario A. G. P. — All rights reserved.
-
-This project is part of my official Master’s dissertation at Goldsmiths, University of London.  
-**Copying, reproducing, or distributing any part of this project without explicit permission is prohibited.**
-
-For academic inquiries or collaborations, please contact me directly.
-
----
-
-##  Demo
-
- Soon to be deployed on a public platform for testing.
+- **Platform**: Render
+- **Type**: Web service
+- **Region**: Frankfurt (EU Central)
+- **Runtime**: Node.js 20.x with Python 3.11 (via `start.sh`)
+- **Deployment**: On every push to main
+- **Python Setup**: Installed in runtime via virtualenv
 
 ---
 
-##  Acknowledgments
+## Acknowledgments
 
-- CDC - BRFSS Open Data
-- Scikit-learn & TensorFlow
+- CDC BRFSS Open Data
+- Scikit-learn
 - Tailwind CSS
 - MongoDB Atlas
+- Render Deployment
+
+---
+
+© 2025 Dario A. G. P.  
+For license information, see [`LICENSE`](./LICENSE).
